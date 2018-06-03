@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditShopsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditShopsLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{shopsController.selected.id}" title="#{bundle.EditShopsTitle_id}" required="true" requiredMessage="#{bundle.EditShopsRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditShopsLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{shopsController.selected.name}" title="#{bundle.EditShopsTitle_name}" required="true" requiredMessage="#{bundle.EditShopsRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.EditShopsLabel_place}" for="place" />
+                    <h:inputText id="place" value="#{shopsController.selected.place}" title="#{bundle.EditShopsTitle_place}" required="true" requiredMessage="#{bundle.EditShopsRequiredMessage_place}"/>
+                    <h:outputLabel value="#{bundle.EditShopsLabel_userId}" for="userId" />
+                    <h:selectOneMenu id="userId" value="#{shopsController.selected.userId}" title="#{bundle.EditShopsTitle_userId}" required="true" requiredMessage="#{bundle.EditShopsRequiredMessage_userId}">
+                        <f:selectItems value="#{usersController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{shopsController.update}" value="#{bundle.EditShopsSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditShopsViewLink}"/>
+                <br />
+                <h:commandLink action="#{shopsController.prepareList}" value="#{bundle.EditShopsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditShopsIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

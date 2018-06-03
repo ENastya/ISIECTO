@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateShopsProductsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateShopsProductsLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{shopsProductsController.selected.id}" title="#{bundle.CreateShopsProductsTitle_id}" required="true" requiredMessage="#{bundle.CreateShopsProductsRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateShopsProductsLabel_price}" for="price" />
+                    <h:inputText id="price" value="#{shopsProductsController.selected.price}" title="#{bundle.CreateShopsProductsTitle_price}" required="true" requiredMessage="#{bundle.CreateShopsProductsRequiredMessage_price}"/>
+                    <h:outputLabel value="#{bundle.CreateShopsProductsLabel_shopsId}" for="shopsId" />
+                    <h:selectOneMenu id="shopsId" value="#{shopsProductsController.selected.shopsId}" title="#{bundle.CreateShopsProductsTitle_shopsId}" required="true" requiredMessage="#{bundle.CreateShopsProductsRequiredMessage_shopsId}">
+                        <f:selectItems value="#{shopsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateShopsProductsLabel_productsId}" for="productsId" />
+                    <h:selectOneMenu id="productsId" value="#{shopsProductsController.selected.productsId}" title="#{bundle.CreateShopsProductsTitle_productsId}" required="true" requiredMessage="#{bundle.CreateShopsProductsRequiredMessage_productsId}">
+                        <f:selectItems value="#{productsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{shopsProductsController.create}" value="#{bundle.CreateShopsProductsSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{shopsProductsController.prepareList}" value="#{bundle.CreateShopsProductsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateShopsProductsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
